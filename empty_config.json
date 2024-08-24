@@ -1,7 +1,7 @@
 {
     "spotify": {
-        "client_id": "GET FROM SPOTIFY DEVELOPER SITE",
-        "client_secret": "GET FROM SPOTIFY DEVELOPER SITE",
+        "client_id": "FILL THIS IN FROM SPOTIFY DEVELOPER PAGE",
+        "client_secret": "FILL THIS IN FROM SPOTIFY DEVELOPER PAGE",
         "redirect_uri": "http://localhost:8888/callback"
     },
     "playlists": {
