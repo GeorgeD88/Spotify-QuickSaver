@@ -44,7 +44,7 @@ def get_config() -> dict:
     utl.file_exists_error(CONFIG_FILE)
     return utl.read_json(CONFIG_FILE)
 
-def get_config_value(key: str, config: dict = None):# -> dict | list:
+def get_config_value(key: str, config: dict = None) -> dict:
     """ Retrieves and returns the value associated with the given key from the config file,
         or retrieves the value from the already loaded config if provided. """
     if config is None:
