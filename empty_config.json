@@ -1,0 +1,21 @@
+{
+    "spotify": {
+        "client_id": "GET FROM SPOTIFY DEVELOPER SITE",
+        "client_secret": "GET FROM SPOTIFY DEVELOPER SITE",
+        "redirect_uri": "http://localhost:8888/callback"
+    },
+    "playlists": {
+        "main_playlist": "LEAVE UNTOUCHED TO ALLOW QS TO AUTO CREATE",
+        "other_playlist": "LEAVE UNTOUCHED TO ALLOW QS TO AUTO CREATE"
+    },
+    "log_filename": "quicksaver.log",
+    "gpio_pins": {
+        "led_success": 0,
+        "led_alert": 0,
+        "led_error": 0,
+        "button_toggle_like": 0,
+        "button_save_main": 0,
+        "button_save_other": 0,
+        "button_undo_save": 0
+    }
+}
