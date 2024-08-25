@@ -8,13 +8,13 @@
 for example, how you refer to a quicksave (pascal case, capital, lower, etc.)
 or using QuickSaver to casually refer to the app. -->
 
-Welcome to **Spotify QuickSave**! The Raspberry Pi-powered Python app designed to enhance your music listening experience. It enables quick and effortless song saving with a quick button press, minimizing interruptions to your workflow.
+Welcome to **Spotify QuickSave**! The RaspberryPi-powered Python app designed to enhance your music listening experience. It enables quick and effortless song saving with a quick button press, minimizing interruptions to your routine and keeping you focused.
 
-I found that when I was doing work while listening to a new playlist, I would keep finding new songs I loved and wanted to save to my library. The problem is switching to the Spotify app every few minutes to add songs to my library was very disruptive to my workflow. This drove me to create **Spotify QuickSave**. With QuickSave all it takes is a quick press of a button and the currently playing song gets quickly saved to your library and a previously specified playlist. If you for some reason change your mind about saving that song, you can easily undo the last save with the push of another button.
+I found that when I was doing work while listening to a new playlist I discovered on Spotify, I would keep finding new songs I loved and wanted to save to my library. The problem is that switching to the Spotify app every few minutes to add songs to my library was very disruptive to my workflow. This drove me to create **Spotify QuickSave**. With QuickSave all it takes is a quick press of a button and the currently playing song gets quickly saved to your library and a previously specified playlist. If you for some reason change your mind about saving that song, you can easily undo the last save with the push of another button.
 
-This allows you to effortlessly save songs while you're browsing the web, doing homework, working on a project, etc. I actually found myself constantly needing QuickSave **_while_ I was developing it,** and I'm even using it as I write this README.
+This allows you to effortlessly save songs while you're browsing the web, doing homework, or even on a long drive. I actually found myself constantly needing QuickSave **_while_ I was developing it,** and I'm even using it as I write this README.
 
-Ready to give it a try? Download the repo and follow the instructions below to get started!
+Ready to give it a try? Follow the detailed guide below to get started!
 
 ## License :penguin:
 **Spotify QuickSave** is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). See the [LICENSE](LICENSE) file for more details.
@@ -37,7 +37,7 @@ Before you can run the project, make sure you have the following dependencies in
 If you're still having trouble running QuickSaver, your Python version might be too old to use the required packages. Either install older versions of the packages that work with your version of Python, or upgrade your Python version.
 
 ### Raspberry Pi Setup :pie:
-To begin, you will need a Raspberry Pi capable of running an Operating System; which is any RasPi except for the RasPi Pico. It is recommended that you install a light, headless OS on the RasPi you're using, such as **Raspberry Pi OS Lite**. Use [this tutorial](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system) from the official RaspberryPi site for installing an OS on your RasPi. Make sure to go through the [OS customisation section](https://www.raspberrypi.com/documentation/computers/getting-started.html#advanced-options) to configure the **wireless LAN (Wi-Fi)** and **enable SSH**. These allow you to connect to your RasPi wirelessly through the terminal which is very important, especially if you're running headlessly (without a display) which is recommended.
+To begin, you will need a Raspberry Pi capable of running an Operating System; which is any RasPi except for the RasPi Pico. It is recommended that you install a light, headless OS on the RasPi you're using, such as **Raspberry Pi OS Lite**. Use [this tutorial](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system) from the official RaspberryPi site for installing an OS on your RasPi. Make sure to go through the [OS customisation section](https://www.raspberrypi.com/documentation/computers/getting-started.html#advanced-options) to configure the **wireless LAN (Wi-Fi)** and **enable SSH**. The wireless LAN is absolutely required to allow QuickSaver to communicate with the Spotify API, otherwise it can't run. It's also important, in combination with enabling SSH, to allow you to connect to your RasPi wirelessly through the terminal, which is especially important if you're running headlessly (without a display) which is the recommended configuration.
 
 Once you have a RasPi with a working OS, you'll need to download this repository. If your RasPi is running headlessly as recommended, you'll need to SSH into your Pi to access it; which means opening a terminal session on the Pi through your local network. You can use the [following guide](https://www.raspberrypi.com/documentation/computers/remote-access.html) from the official RaspberryPi site to get started. Once SSHed into your Pi, use `git` to clone this repository to your RasPi.
 
@@ -99,7 +99,7 @@ Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/docu
 ```
 
 ### OS Configuration & Automation :hammer_and_wrench:
-if you've already installed the OS and did not enable ssh, you can do it manually on card bruh.
+You'll need to make some changes on your RasPi to allow **Spotify QuickSave** to run automatically. To make these changes, start by connecting to your RasPi computer by opening an SSH connection. We're going to be **(1)** editing your Wi-Fi network list and **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up.
 
 1. Wi-Fi Configuration: Setting up Wi-Fi so that the Raspberry Pi automatically connects to a network on boot. Include instructions for editing the wpa_supplicant.conf file.
 
@@ -163,7 +163,7 @@ In addition to quicksaving, you can simply ***toggle like*** to save (or unsave)
 
 **Ready Lights :green_circle::yellow_circle::red_circle::** When the Quicksaver app starts running, it will trigger an LED sequence using all the LEDs to signal **the app is up and running**.
 
-**Red Error Flash :red_circle::** Very rarely you might see the red light flash alone which indicates a critical error. This might be caused by a failed request to the API, a missing `config.json` file, etc. It doesn't require any intervention from you, just make sure to avoid messing with any files you haven't instructed to change to reduce the likelihood of errors.
+**Red Error Flash :red_circle::** Very rarely you might see the red light flash alone which indicates a critical error. This might be caused by a failed request to the API, a missing `config.json` file, etc. It doesn't require any intervention from you, just make sure to avoid messing with any files you haven't been instructed to change to reduce the likelihood of errors.
 
 ## Important Consideration :warning:
 QuickSave fetches the songs in your playlist at the start of each run of the app, and saves it in a local list. This list is used to keep track of the songs in your playlists to avoid adding duplicates, but the list is **NOT updated throughout the run of the app.** Meaning it does not re-fetch the songs from Spotify as you use the app, it only keeps track of the songs added using QuickSave. So if you remove or add a song manually from Spotify while the app is running, it will not account for that during the run, so be careful.
