@@ -161,7 +161,9 @@ In addition to quicksaving, you can simply ***toggle like*** to save (or unsave)
    - Green + yellow flash :green_circle::yellow_circle:: last quicksave was successfully **undone**
    - Yellow flash :yellow_circle:: **max undo** warning, can't undo more than once in a row
 
-**Ready Lights:** When the Quicksaver app starts running, it will trigger an LED sequence to signal **the app is up and running**, ready for saves.
+**Ready Lights :green_circle::yellow_circle::red_circle::** When the Quicksaver app starts running, it will trigger an LED sequence using all the LEDs to signal **the app is up and running**.
+
+**Red Error Flash :red_circle::** Very rarely you might see the red light flash alone which indicates a critical error. This might be caused by a failed request to the API, a missing `config.json` file, etc. It doesn't require any intervention from you, just make sure to avoid messing with any files you haven't instructed to change to reduce the likelihood of errors.
 
 ## Important Consideration :warning:
 QuickSave fetches the songs in your playlist at the start of each run of the app, and saves it in a local list. This list is used to keep track of the songs in your playlists to avoid adding duplicates, but the list is **NOT updated throughout the run of the app.** Meaning it does not re-fetch the songs from Spotify as you use the app, it only keeps track of the songs added using QuickSave. So if you remove or add a song manually from Spotify while the app is running, it will not account for that during the run, so be careful.
