@@ -64,7 +64,7 @@ Once you have your client ID and secret, open the `config.json` file in the proj
     ...
 ```
 
-### Circuit Setup
+### Circuit Setup :zap:
 The Raspberry Pi setup will require you to wire 4 buttons and 3 LEDs:
 - **4 Buttons:**
   1. Toggle Like
@@ -101,9 +101,74 @@ Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/docu
 ### OS Configuration & Automation :hammer_and_wrench:
 You'll need to make some changes on your RasPi to allow **Spotify QuickSave** to run automatically. To make these changes, start by connecting to your RasPi computer by opening an SSH connection. We're going to be **(1)** editing your Wi-Fi network list and **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up.
 
-1. Wi-Fi Configuration: Setting up Wi-Fi so that the Raspberry Pi automatically connects to a network on boot. Include instructions for editing the wpa_supplicant.conf file.
+#### Wi-Fi Configuration (optional)
+You should've already configured the details of your Wi-Fi network when you first installed the OS on your RasPi, but you have the option to add more networks. This is important if you're going to use QuickSaver in different places with different Wi-Fi networks; your RasPi will have to have the details of any network it might use beforehand so that it can automatically connect to it when you plug it into power.
 
-2. Setting Up the Systemd Service: Creating and enabling a systemd service for QuickSaver to ensure it starts automatically on boot. Instructions for creating the service file, specifying paths, and managing the service (start, stop, enable, disable).
+You can edit the file containing your network configuration by running the following command:
+```shell
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
+The file should initially look something like this:
+```conf
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="YourNetworkSSID"
+    psk="YourNetworkPassword"
+    key_mgmt=WPA-PSK
+}
+```
+
+**To add more networks,** simply copy the `network={...}` block and replace the SSID and password with the details of the network you trying to add. *The SSID is the name of the Wi-Fi, the same name you usually see when connecting your phone or laptop to Wi-Fi.* The RasPi tries to connect to these networks in the order they appear in the file. If the first network is unavailable, it moves on to the next network block, and so on.
+```conf
+...
+
+network={
+    ssid="1stPriorityNetwork"
+    psk="password"
+    key_mgmt=WPA-PSK
+}
+
+network={
+    ssid="2ndPriorityNetwork"
+    psk="password"
+    key_mgmt=WPA-PSK
+}
+```
+
+If desired, the **priority field** can be used to explicitly set which network the Raspberry Pi should prefer if multiple networks are available. A higher priority value means the network is preferred over others with lower values:
+```conf
+...
+
+network={
+    ssid="1stPriorityNetwork"
+    psk="password"
+    key_mgmt=WPA-PSK
+    priority=2
+}
+
+network={
+    ssid="2ndPriorityNetwork"
+    psk="password"
+    key_mgmt=WPA-PSK
+    priority=1
+}
+```
+
+#### Automatic Startup with systemd
+To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
+
+<!-- 1. -->
+A service file has been provided in this project directory. You will simply edit it with your details and then move it to `/etc/systemd/system/`, a directory containing all `systemd` services.
+
+2. edit certain details
+
+3. move to .../system/ directory
+
+4. enable the service (optionally start it now)
 
 ### Spotify Playlist IDs (optional)
 You might have noticed the following section in `config.json`:
