@@ -101,6 +101,18 @@ Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/docu
 ### OS Configuration & Automation :hammer_and_wrench:
 You'll need to make some changes on your RasPi to allow **Spotify QuickSave** to run automatically. To make these changes, start by connecting to your RasPi computer by opening an SSH connection. We're going to be **(1)** editing your Wi-Fi network list and **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up.
 
+#### Automatic Startup with systemd
+To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
+
+<!-- 1. -->
+A service file has been provided in this project directory. You will simply edit it with your details and then move it to `/etc/systemd/system/`, a directory containing all `systemd` services.
+
+2. edit certain details
+
+3. move to .../system/ directory
+
+4. enable the service (optionally start it now)
+
 #### Wi-Fi Configuration (optional)
 You should've already configured the details of your Wi-Fi network when you first installed the OS on your RasPi, but you have the option to add more networks. This is important if you're going to use QuickSaver in different places with different Wi-Fi networks; your RasPi will have to have the details of any network it might use beforehand so that it can automatically connect to it when you plug it into power.
 
@@ -157,18 +169,6 @@ network={
     priority=1
 }
 ```
-
-#### Automatic Startup with systemd
-To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
-
-<!-- 1. -->
-A service file has been provided in this project directory. You will simply edit it with your details and then move it to `/etc/systemd/system/`, a directory containing all `systemd` services.
-
-2. edit certain details
-
-3. move to .../system/ directory
-
-4. enable the service (optionally start it now)
 
 ### Spotify Playlist IDs (optional)
 You might have noticed the following section in `config.json`:
