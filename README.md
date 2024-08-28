@@ -1,4 +1,4 @@
-# Spotify QuickSave :notes::zap::floppy_disk:
+# Spotify QuickSaver :notes::zap::floppy_disk:
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-orange.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54&style=flat)](https://www.python.org/)
 [![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi&style=flat)](https://www.raspberrypi.com/)
@@ -8,16 +8,16 @@
 for example, how you refer to a quicksave (pascal case, capital, lower, etc.)
 or using QuickSaver to casually refer to the app. -->
 
-Welcome to **Spotify QuickSave**! The RaspberryPi-powered Python app designed to enhance your music listening experience. It enables quick and effortless song saving with a quick button press, minimizing interruptions to your routine and keeping you focused.
+Welcome to **Spotify QuickSaver**! The RaspberryPi-powered Python app designed to enhance your music listening experience. It enables quick and effortless song saving with a quick button press, minimizing interruptions to your routine and keeping you focused.
 
-I found that when I was doing work while listening to a new playlist I discovered on Spotify, I would keep finding new songs I loved and wanted to save to my library. The problem is that switching to the Spotify app every few minutes to add songs to my library was very disruptive to my workflow. This drove me to create **Spotify QuickSave**. With QuickSave all it takes is a quick press of a button and the currently playing song gets quickly saved to your library and a previously specified playlist. If you for some reason change your mind about saving that song, you can easily undo the last save with the push of another button.
+I found that while working and listening to a newly discovered playlist on Spotify, I would keep finding new songs I loved and wanted to save to my library. The problem is that switching to the Spotify app every few minutes to add songs to my library was very disruptive to my workflow. This drove me to create **Spotify QuickSaver**. With QuickSaver, all it takes is a quick press of a button and the currently playing song gets quickly saved to your library and a previously specified playlist. If you for some reason change your mind about saving that song, you can easily undo the last save with the push of another button.
 
-This allows you to effortlessly save songs while you're browsing the web, doing homework, or even on a long drive. I actually found myself constantly needing QuickSave **_while_ I was developing it,** and I'm even using it as I write this README.
+This allows you to effortlessly save songs while you're browsing the web, doing homework, or even on a long drive. I actually found myself constantly needing QuickSaver **_while_ I was developing it,** and I'm even using it as I write this README.
 
 Ready to give it a try? Follow the detailed guide below to get started!
 
-## License :penguin:
-**Spotify QuickSave** is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). See the [LICENSE](LICENSE) file for more details.
+## License :bison:
+**Spotify QuickSaver** is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). See the [LICENSE](LICENSE) file for more details.
 
 ## What I Learned :books:
 - Programming self-sustaining embedded systems.
@@ -44,7 +44,7 @@ Once you have a RasPi with a working OS, you'll need to download this repository
 Direct your attention to the `empty_config.json` file in the directory (folder) you just cloned from GitHub. You're going to be filling in this configuration file with information about your Spotify and Raspberry Pi setup as you go through the rest of the README. Start by renaming the file to `config.json`.
 
 ### Spotify API Setup :notes:
-**Spotify QuickSave** uses the Spotify API, so you'll be required to create your own API keys on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard); don't worry, it's pretty simple!
+**Spotify QuickSaver** uses the Spotify API, so you'll be required to create your own API keys on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard); don't worry, it's pretty simple!
 
 Follow these steps if you need help:
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and log in with your Spotify account.
@@ -80,7 +80,7 @@ You can wire the circuit however you like, as long as you include the components
 
 Below is a schematic of how I wired the circuit as an example that you can copy (resistors between 60Ω and 100Ω are recommended). Whether you copy my circuit or wire it your own way, **DO SO AT YOUR OWN RISK**, because electronics can be dangerous and you may damage your hardware if you're not sure what you're doing. It's not that difficult but it's important to do the proper research and exercise caution.
 
-![Raspberry Pi QuickSave Schmeatic](Spotify-QuickSave_Schematic.png)
+![Raspberry Pi QuickSaver Schmeatic](Spotify-QuickSave_Schematic.png)
 
 Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png?hash=df7d7847c57a1ca6d5b2617695de6d46) to figure out the GPIO pin numbers you used, then fill them in in `config.json`. It looks like this:
 
@@ -99,7 +99,7 @@ Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/docu
 ```
 
 ### OS Configuration & Automation :hammer_and_wrench:
-You'll need to make some changes on your RasPi to allow **Spotify QuickSave** to run automatically. To make these changes, start by connecting to your RasPi computer by opening an SSH connection. We're going to be **(1)** editing your Wi-Fi network list and **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up.
+You'll need to make some changes on your RasPi to allow **Spotify QuickSaver** to run automatically. To make these changes, start by connecting to your RasPi computer by opening an SSH connection. We're going to be **(1)** editing your Wi-Fi network list and **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up.
 
 #### Automatic Startup with systemd
 To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
@@ -182,12 +182,12 @@ You might have noticed the following section in `config.json`:
     ...
 ```
 
-**Spotify QuickSave** gives you the option to pick between 2 different playlists to save to. When you run the app, QuickSaver will grab the playlist IDs of these 2 playlist options from `config.json` and use them whenever you save a song. If the playlist configuration in `config.json` is left untouched, QuickSaver will automatically create new playlists on the first run of the app and update `config.json` with the new playlist IDs. Once created, you can edit the names, descriptions, and images of these playlists if desired; make sure to differentiate between the main playlist and the other playlist.
+**Spotify QuickSaver** gives you the option to pick between 2 different playlists to save to. When you run the app, QuickSaver will grab the playlist IDs of these 2 playlist options from `config.json` and use them whenever you save a song. If the playlist configuration in `config.json` is left untouched, QuickSaver will automatically create new playlists on the first run of the app and update `config.json` with the new playlist IDs. Once created, you can edit the names, descriptions, and images of these playlists if desired; make sure to differentiate between the main playlist and the other playlist.
 
 You can **optionally** set your own playlists by pressing "Share" on the playlist in Spotify and copying the link. It should look something like this: `https://open.spotify.com/playlist/<PLAYLIST_ID_HERE>?si=XXXXXXXXXXX`. Copy the playlist ID from the link and paste it in the appropriate spot in `config.json`; note which playlist you set to *main* and which playlist you set to *other*.
 
 ## Usage :technologist:
-The purpose of **Spotify QuickSave** is to be able to easily and quickly save the *currently playing song* to your playlist and library with the press of a button, which I like to call a *"Quicksave"*. When a Quicksave is triggered, the currently playing song is liked (saved to your Spotify library) and added to the playlist specified in the config file.
+The purpose of **Spotify QuickSaver** is to be able to easily and quickly save the *currently playing song* to your playlist and library with the press of a button, which I like to call a *"Quicksave"*. When a Quicksave is triggered, the currently playing song is liked (saved to your Spotify library) and added to the playlist specified in the config file.
 
 Below are all the functions of QuickSaver:
 1. **Toggle Like:** Likes/unlikes the currently playing song (in Spotify this means saving/unsaving it to your library).
@@ -200,14 +200,14 @@ QuickSaver allows you to save to 2 different playlists because sometimes you mig
 
 Another common usage would be to use the ***main playlist*** for songs you 100% would like to save, while using the ***other playlist*** for songs you might save. Once you're done with your listening session, you can come back to Spotify and give the other songs a second look and decide which ones you'd like to definitely save. The ideas are endless, it's up to you to decide how you want to use the 2 playlists.
 
-**Undoing the Last QuickSave**  
+**Undoing the Last Quicksave**  
 If you change your mind about the song you just quicksaved, you can ***undo save*** to unlike it and remove it from the playlist it was saved to. **Note** that you can only undo one time after saving a song, meaning you won't be able to undo again until you quicksave another song.
 
 **Toggle Like**  
 In addition to quicksaving, you can simply ***toggle like*** to save (or unsave) the currently playing song to your Spotify library, without saving it to a playlist.
 
 ## LED Signal Guide :traffic_light:
-**Spotify QuickSave** makes use of 3 LEDs (green, yellow, red) to provide clear and immediate feedback from the app when you press buttons, such as successful saves, errors, and warnings. Here is what each signal means based on what button triggered it:
+**Spotify QuickSaver** makes use of 3 LEDs (green, yellow, red) to provide clear and immediate feedback from the app when you press buttons, such as successful saves, errors, and warnings. Here is what each signal means based on what button triggered it:
 
 1. **Toggle Like**
    - Green flash :green_circle:: song was successfully **liked**
@@ -235,4 +235,4 @@ To avoid saving duplicate songs to playlists, QuickSaver fetches the songs in yo
 If you remove or add a song manually from Spotify while QuickSaver is running, just keep in mind that QuickSaver will not account for the change so it is up to you to consider these changes.
 
 ***
-That's it! Now you're ready to use **Spotify-QuickSave** and get to jamming :headphones: :notes:
+That's it! Now you're ready to use **Spotify QuickSaver** and get to jamming :headphones: :notes:
