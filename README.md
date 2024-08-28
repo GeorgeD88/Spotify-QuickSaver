@@ -1,4 +1,4 @@
-# Spotify QuickSave :zap: :notes:
+# Spotify QuickSave :notes::zap::floppy_disk:
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-orange.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54&style=flat)](https://www.python.org/)
 [![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi&style=flat)](https://www.raspberrypi.com/)
