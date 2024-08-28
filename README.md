@@ -207,7 +207,6 @@ If you change your mind about the song you just quicksaved, you can ***undo save
 In addition to quicksaving, you can simply ***toggle like*** to save (or unsave) the currently playing song to your Spotify library, without saving it to a playlist.
 
 ## LED Signal Guide :traffic_light:
-<!-- # TODO: continue writing. -->
 **Spotify QuickSave** makes use of 3 LEDs (green, yellow, red) to provide clear and immediate feedback from the app when you press buttons, such as successful saves, errors, and warnings. Here is what each signal means based on what button triggered it:
 
 1. **Toggle Like**
@@ -231,7 +230,9 @@ In addition to quicksaving, you can simply ***toggle like*** to save (or unsave)
 **Red Error Flash :red_circle::** Very rarely you might see the red light flash alone which indicates a critical error. This might be caused by a failed request to the API, a missing `config.json` file, etc. It doesn't require any intervention from you, just make sure to avoid messing with any files you haven't been instructed to change to reduce the likelihood of errors.
 
 ## Important Consideration :warning:
-QuickSave fetches the songs in your playlist at the start of each run of the app, and saves it in a local list. This list is used to keep track of the songs in your playlists to avoid adding duplicates, but the list is **NOT updated throughout the run of the app.** Meaning it does not re-fetch the songs from Spotify as you use the app, it only keeps track of the songs added using QuickSave. So if you remove or add a song manually from Spotify while the app is running, it will not account for that during the run, so be careful.
+To avoid saving duplicate songs to playlists, QuickSaver fetches the songs in your playlists when the app first starts up and saves it to a local list. Every time you quicksave a song to a playlist, it will be compared with the local list to ensure it's not a duplicate. The local list is **NOT updated throughout the runtime of the app,** so if you make any changes to your playlist in the Spotify app, QuickSaver will not be aware of these changes and won't be able to prevent duplicate quicksaves of untracked songs.
+
+If you remove or add a song manually from Spotify while QuickSaver is running, just keep in mind that QuickSaver will not account for the change so it is up to you to consider these changes.
 
 ***
 That's it! Now you're ready to use **Spotify-QuickSave** and get to jamming :headphones: :notes:
