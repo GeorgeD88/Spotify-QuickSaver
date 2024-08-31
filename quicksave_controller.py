@@ -36,7 +36,7 @@ class QuickSaveController:
             return False
 
         # Playlist exists, return whether it's owned by the current user
-        return plist_owner_id == self.client.current_user_id()
+        return plist_owner_id == self.client.user_id
 
     def create_sampler_playlist(self, plist_label: str) -> str:
         """ Creates a sampler playlist for the provided label and returns the new playlist ID. """

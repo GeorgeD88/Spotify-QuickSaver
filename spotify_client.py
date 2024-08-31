@@ -2,7 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.exceptions import SpotifyException
 import config_handler as config
-import time
 
 SCOPES = [
     "user-read-playback-state",     # Get current playback
@@ -27,6 +26,7 @@ class SpotifyClient:
         self._load_api_creds()
         self.auth_manager = self._init_spotify_auth_manager()
         self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
+        self.user_id = self.current_user_id()
 
     def _load_api_creds(self):
         """ Loads the Spotify API credentials from the config file and defines them. """
@@ -41,8 +41,13 @@ class SpotifyClient:
             client_id=self.client_id,
             client_secret=self.client_secret,
             redirect_uri=self.redirect_uri,
-            scope=SCOPES
+            scope=SCOPES,
+            open_browser=False
         )
+
+    """ Auth Token Handling
+    SpotifyOAuth._get_auth_response_interactive
+    """
 
     # !!! ===v TODO: v=== !!!
     # def _except_error(self, try_func):
@@ -186,7 +191,7 @@ class SpotifyClient:
 
     def create_new_playlist(self, plist_name: str, description: str = None) -> str:
         """ Creates a new Spotify playlist using the provided details. """
-        return self.sp.user_playlist_create(self.current_user_id(), plist_name, description=description)['id']
+        return self.sp.user_playlist_create(self.user_id, plist_name, description=description)['id']
 
     def get_playlist_tracks(self, playlist_id: str) -> list[str]:
         """ Gets all the tracks in the given playlist. """
