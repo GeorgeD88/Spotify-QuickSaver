@@ -1,0 +1,14 @@
+[Unit]
+Description=Spotify-QuickSaver app
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 {PATH}/main.py
+WorkingDirectory={PATH}/main.py
+StandardOutput=file:{PATH}/qs-service.log
+StandardError=file:{PATH}/qs-service.log
+Restart=always
+User={USER}
+
+[Install]
+WantedBy=multi-user.target

@@ -110,13 +110,9 @@ QuickSaver will only need to do perform this authorization process on its first 
 #### Automatic Startup with systemd
 To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
 
-<!-- It is necessary the QuickSaver project directory is stored in your home directory. To ensure this is correct, run the `pwd` command while in the QuickSaver project directory. The output should look like this: `/home/<USERNAME>/QuickSave-Pi` -->
+A bash script named `setup_service.sh` has been provided to create the service file and set it up for you. To run the script, enter the following command: `sudo ./setup_service.sh`
 
-A bash script named `setup_service.sh` has been provided to create the service file and set it up for you. To run the script, enter the following command: `./setup_service.sh`
-
-<!-- move the service file to `/etc/systemd/system/`, a directory containing all `systemd` services. -->
-
-<!-- TODO: write the details about if they want to optionally start it now -->
+After running the script, QuickSaver will be ready to automatically start whenever the RasPi boots up and connects to Wi-Fi.
 
 #### Wi-Fi Configuration (optional)
 You should've already configured the details of your Wi-Fi network when you first installed the OS on your RasPi, but you have the option to add more networks. This is important if you're going to use QuickSaver in different places with different Wi-Fi networks; your RasPi will have to have the details of any network it might use beforehand so that it can automatically connect to it when you plug it into power.
