@@ -98,14 +98,16 @@ Compare your circuit to a [GPIO pinout diagram](https://www.raspberrypi.com/docu
 You'll need to make some changes on your RasPi to allow **Spotify QuickSaver** to run automatically. If you haven't done so already, start by connecting to your RasPi computer by **opening an SSH connection,** you can refer back to [this guide](https://www.raspberrypi.com/documentation/computers/remote-access.html) for help. We're going to be **(1)** authorizing QuickSaver to use your Spotify account, **(2)** setting up a service that automatically runs QuickSaver whenever your RasPi boots up, and **(3)** editing your Wi-Fi network list (optional).
 
 #### Authorize QuickSaver with your Spotify Account
-To allow QuickSaver access to your Spotify, it needs to be authorized with your Spotify account through the OAuth login process. This will require access to a web browser, which the RasPi can not access headlessly.
+To allow QuickSaver access to your Spotify, it needs to be authorized with your Spotify account through the OAuth login process. This authorization process only needs to happen once, on the first run of the app. While in the directory of the QuickSaver project, run the following command to start up QuickSaver for the first time: `python main.py`.
+
+Once running, follow these steps:
 
 1. **Copy the URL provided by QuickSaver and paste it into your browser;** some terminals will allow you to `CTRL + Click` to automatically open URLs in your computer's browser.
 2. **Follow the instructions on the screen** to log in and grant QuickSaver access to your Spotify account.
-3. **Copy the URL** you were redirected to from your browser's URL box.
+3. **Copy the URL** you were redirected to from your browser's search/URL box.
 4. **Paste the new URL into your terminal** by using the shortcut `CTRL + SHIFT + V`, then press enter to input it.
 
-QuickSaver will only need to do perform this authorization process on its first run, all subsequent runs will not require any further action from you and will be completely automatic. You can now close the program by pressing `CTRL + C`, but keep the SSH session open to complete the next step.
+Now that you're authorized, all subsequent runs will not require any further action from you and will be completely automatic. You can now close the program by pressing `CTRL + C`, but keep the SSH session open to complete the next step.
 
 #### Automatic Startup with systemd
 To ensure that QuickSaver runs seamlessly and starts automatically whenever your Raspberry Pi boots up, we'll set up a `systemd` service. This service will manage the execution of the application in the background, providing reliable and continuous operation without the need for manual intervention.
