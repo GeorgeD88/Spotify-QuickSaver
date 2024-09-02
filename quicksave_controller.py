@@ -1,5 +1,4 @@
 from spotify_client import SpotifyClient
-import token_cache_handler as cache
 
 # Constants
 IS_DUPE = "IS_DUPLICATE"  # Status code for duplicate track
